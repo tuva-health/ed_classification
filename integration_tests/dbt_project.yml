@@ -1,0 +1,43 @@
+name: 'integration_tests'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+
+
+vars:
+## List of optional vars
+# tuva_database: dev_user
+# tuva_schema_prefix: test
+# <package_name>_database: dev_user
+# <package_name>_schema: test
+## The two vars below can reference a ref or source
+# core_<table_name>_override: "{{ref('<table_name>')}}"
+# <package_name>_<table_name>_override: "{{source('<source>','table_name')}}"
+# tuva_packages_enabled: false
+# <package_name>_enabled: true
+## Only needed if package uses Terminology package
+# terminology_enabled: false
+
+dispatch:
+  - macro_namespace: dbt
+    search_order: [ '<package_name>', 'dbt']
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  integration_tests:
+    +materialized: ephemeral
