@@ -1,8 +1,7 @@
-
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'ed_classification'
 version: '0.0.1'
 config-version: 2
 
@@ -31,4 +30,11 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
+seeds:
+  ed_classification: # you must include the project name
+    johnston_icd9:
+      +column_types:
+        icd9: text
+    johnston_icd10:
+      +column_types:
+        icd10: text

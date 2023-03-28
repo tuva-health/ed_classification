@@ -1,0 +1,33 @@
+version: 2
+
+seeds:
+  - name: johnston_icd9
+    description: A probabilistic mapping of icd9 codes to ed classification categories
+    columns:
+      - name: icd9
+        tests:
+          - unique
+          - not_null
+      - name: edcnnpa
+      - name: edcnpa
+      - name: epct
+      - name: noner
+      - name: injury
+      - name: psych
+      - name: alcohol
+      - name: drug
+  - name: johnston_icd10
+    description: A probabilistic mapping of icd9 codes to ed classification categories
+    columns:
+      - name: icd9
+        tests:
+          - unique
+          - not_null
+      - name: edcnnpa
+      - name: edcnpa
+      - name: epct
+      - name: noner
+      - name: injury
+      - name: psych
+      - name: alcohol
+      - name: drug
