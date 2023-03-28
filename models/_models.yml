@@ -1,18 +1,1 @@
 version: 2
-
-models:
-  - name: <model_name>
-    config:
-      database: "{{ var('<package_name>_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('<package_name>_schema',None) != None -%}{{var('<package_name>_schema')}}
-          {%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_<package_name>
-            {% else %}<package_name>{%- endif -%}
-      alias: <table_name>
-      tags: <package_name>
-    description: >
-      Add model description
-    columns:
-      - name: <column_name>
-        description: >
-          Add column description

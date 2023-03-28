@@ -9,11 +9,18 @@ config-version: 2
 profile: 'default'
 
 vars:
-    <input_table_name>: |
-        {% if var('<package_name>_<input_table_name>_override',none) is not none %}{{var('<package_name>_<input_table_name>_override')}}
-        {%- elif var('core_<input_table_name>_override',none) is not none %}{{var('core_<input_table_name>_override')}}
-        {%- else %}{{ref('claims_preprocessing__<input_table_name>')}}
-        {% endif %}
+    ed_classification_encounter_override: medicare_lds_five_percent.core.encounter
+    ed_classification_condition_override: medicare_lds_five_percent.core.condition
+    encounter: >
+        {% if var('ed_classification_encounter_override',none) is not none %}{{var('ed_classification_encounter_override')}}
+        {%- elif var('core_encounter_override',none) is not none %}{{var('core_encounter_override')}}
+        {%- else %}{{ref('claims_preprocessing__encounter')}}
+        {%- endif %}
+    condition: >
+        {% if var('ed_classification_condition_override',none) is not none %}{{var('ed_classification_condition_override')}}
+        {%- elif var('core_condition_override',none) is not none %}{{var('core_condition_override')}}
+        {%- else %}{{ref('claims_preprocessing__condition')}}
+        {%- endif %}
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
