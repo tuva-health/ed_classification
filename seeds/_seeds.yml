@@ -3,6 +3,9 @@ version: 2
 seeds:
   - name: johnston_icd9
     description: A probabilistic mapping of icd9 codes to ed classification categories
+    config:
+      column_types:
+        icd9: text
     columns:
       - name: icd9
         tests:
@@ -18,6 +21,9 @@ seeds:
       - name: drug
   - name: johnston_icd10
     description: A probabilistic mapping of icd9 codes to ed classification categories
+    config:
+      column_types:
+        icd10: text
     columns:
       - name: icd10
         tests:
