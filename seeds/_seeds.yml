@@ -19,7 +19,7 @@ seeds:
   - name: johnston_icd10
     description: A probabilistic mapping of icd9 codes to ed classification categories
     columns:
-      - name: icd9
+      - name: icd10
         tests:
           - unique
           - not_null
