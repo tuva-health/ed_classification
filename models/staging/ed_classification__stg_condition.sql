@@ -2,8 +2,16 @@
 -- stg_condition input layer model.
 -- This contains one row for every unique primary discharge diagnosis in the dataset.
 
-
 -- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
+
+with ed_claims as (
+  select
+    claim_id
+    , sum(paid_amount) as claim_paid_amount_sum
+  from {{ var('medical_claim') }}
+  where place_of_service_code = '23' or revenue_center_code in ('0450', '0451', '0452', '0459', '0981')
+  group by 1
+)
 
 select
    cast(encounter_id as {{ dbt.type_string() }}) as encounter_id
@@ -11,7 +19,11 @@ select
    , cast(patient_id as {{ dbt.type_string() }}) as patient_id
    , cast(code_type as {{ dbt.type_string() }}) as code_type
    , cast(code as {{ dbt.type_string() }}) as code
-   , cast(description as {{ dbt.type_string() }}) as description
-from {{ var('condition') }}
+   , cast(condition.description as {{ dbt.type_string() }}) as description
+   , cast(mapping.ccs_description as {{ dbt.type_string() }}) as ccs_description
+   , cast(claim_paid_amount_sum as {{ dbt.type_float() }}) as claim_paid_amount_sum
+from {{ var('condition') }} condition
+inner join ed_claims using(claim_id)
+left join {{ var('terminology_icd_10_cm_to_ccs_mapping') }} mapping on condition.code = mapping.icd_10_cm
 where diagnosis_rank = 1
 and condition_type = 'discharge_diagnosis'

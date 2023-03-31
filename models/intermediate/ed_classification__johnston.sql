@@ -1,14 +1,12 @@
--- This selects all the icd9 and icd10 codes from the johnston seed files
--- and merges them onto a set of primary discharge diagnoses
--- ED classification columns are listed once as a variable because
--- they are used in selection multiple times
+-- All condition discharge diagnosis left join with probabilistic
+-- indicators of ED classification terminology
 
 -- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
 {% set colnames = ["edcnnpa", "edcnpa", "epct", "noner", "injury", "psych", "alcohol", "drug"] %}
 
 with condition as (
-  select * from {{ ref('ed_classification__stg_condition') }}
+select * from {{ ref('ed_classification__stg_condition') }}
 )
 , icd9 as (
   select
@@ -16,6 +14,7 @@ with condition as (
      {% for colname in colnames %}
      , {{colname}}
      {% endfor %}
+     , 1 as ed_classification_capture
   from {{ ref('johnston_icd9') }}
 )
 , icd10 as (
@@ -24,23 +23,26 @@ with condition as (
      {% for colname in colnames %}
      , {{colname}}
      {% endfor %}
+     , 1 as ed_classification_capture
   from {{ ref('johnston_icd10') }}
 )
 
 select
    a.*
    {% for colname in colnames %}
-   , icd.{{colname}}
+   , icd10.{{colname}}
    {% endfor %}
+   , coalesce(icd10.ed_classification_capture, 0) as ed_classification_capture
 from condition a
-inner join icd10 icd
-on a.code = icd.code and a.code_type = 'icd-10-cm'
-   union all
+left join icd10
+on a.code = icd10.code and a.code_type = 'icd-10-cm'
+union all
 select
    a.*
    {% for colname in colnames %}
-   , icd.{{colname}}
+   , icd9.{{colname}}
    {% endfor %}
+   , coalesce(icd9.ed_classification_capture, 0) ed_classification_capture
 from condition a
-inner join icd9 icd
-on a.code = icd.code and a.code_type = 'icd-9-cm'
+inner join icd9
+on a.code = icd9.code and a.code_type = 'icd-9-cm'
