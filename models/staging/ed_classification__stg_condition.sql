@@ -20,7 +20,12 @@ select
    , cast(code_type as {{ dbt.type_string() }}) as code_type
    , cast(code as {{ dbt.type_string() }}) as code
    , cast(condition.description as {{ dbt.type_string() }}) as description
-   , cast(mapping.ccs_description as {{ dbt.type_string() }}) as ccs_description
+   , cast(case
+            when lower(condition.description) like '%covid%'
+            then condition.description
+            else mapping.ccs_description
+           end
+          as {{ dbt.type_string() }}) as ccs_description_with_covid
    , cast(claim_paid_amount_sum as {{ dbt.type_float() }}) as claim_paid_amount_sum
 from {{ var('condition') }} condition
 inner join ed_claims using(claim_id)

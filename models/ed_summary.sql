@@ -1,4 +1,4 @@
--- Total conditions, encounters, claims, patients by ED classification
+-- Total conditions, encounters, claims, patients, cost by ED classification
 
 -- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
@@ -6,6 +6,7 @@ with summary as (
    select
      classification_order
      , classification_name
+     --, ccs_description_with_covid
      , count(*) as condition_row_ct
      , count(distinct(encounter_id)) as encounter_ct
      , count(distinct(claim_id)) as claim_ct
@@ -21,4 +22,4 @@ select
     , 100 * ratio_to_report(claim_ct) over() as pct_claim_row_ct
     , 100 * ratio_to_report(claim_paid_amount_sum) over() as pct_claim_paid_amount_sum
 from summary
-order by classification_order desc
+order by classification_order asc
