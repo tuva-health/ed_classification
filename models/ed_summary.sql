@@ -1,4 +1,6 @@
--- Total conditions, encounters, claims, patients, cost by ED classification
+/*
+Total conditions, encounters, claims, patients, cost by ED classification
+*/
 
 -- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 

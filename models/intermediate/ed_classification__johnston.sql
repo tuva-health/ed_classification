@@ -1,5 +1,7 @@
--- All condition discharge diagnosis left join with probabilistic
--- indicators of ED classification terminology
+/*
+All condition discharge diagnosis left join with probabilistic
+indicators of ED classification terminology
+*/
 
 -- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
