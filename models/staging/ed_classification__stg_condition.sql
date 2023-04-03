@@ -33,4 +33,3 @@ from {{ var('condition') }} condition
 inner join ed_claims using(claim_id)
 left join {{ var('terminology_icd_10_cm_to_ccs_mapping') }} mapping on condition.code = mapping.icd_10_cm
 where diagnosis_rank = 1
-and condition_type = 'discharge_diagnosis'
