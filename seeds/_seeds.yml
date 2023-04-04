@@ -1,9 +1,21 @@
 version: 2
 
 seeds:
+  - name: ed_classification_categories
+    description: A mapping of ED Classifications to human readable names
+    config:
+      schema: ed_seeds
+    columns:
+      - name: classification
+        description: code for classification
+      - name: classification_name
+        description: human readable name for classification
+      - name: classification_order
+        description: Sortable column that organizes the ED classes
   - name: johnston_icd9
     description: A probabilistic mapping of icd9 codes to ed classification categories
     config:
+      schema: ed_seeds
       column_types:
         icd9: text
     columns:
@@ -22,6 +34,7 @@ seeds:
   - name: johnston_icd10
     description: A probabilistic mapping of icd9 codes to ed classification categories
     config:
+      schema: ed_seeds
       column_types:
         icd10: text
     columns:

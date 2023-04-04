@@ -1,0 +1,10 @@
+classification,classification_name,classification_order
+edcnnpa,"Emergent, ED Care Needed, Not Preventable/Avoidable",4
+noner,"Non-Emergent",1
+injury,"Injury",5
+epct,"Emergent, Primary Care Treatable",2
+edcnpa,"Emergent, ED Care Needed, Preventable/Avoidable",3
+psych,"Mental Health Related",6
+alcohol,"Alcohol Related",7
+drug,"Drug Related (excluding alcohol)",8
+unclassified,"Not in a Special Category, and Not Classified",9

@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: ed_classification__johnston_conditions_with_class
+    description: Filtered condition row table to classified ones.
+    config:
+      materialized: table

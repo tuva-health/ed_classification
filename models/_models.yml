@@ -1,18 +1,18 @@
 version: 2
 
 models:
-  - name: <model_name>
-    config:
-      database: "{{ var('<package_name>_database',var('tuva_database','tuva')) }}"
-      schema: |
-        {%- if var('<package_name>_schema',None) != None -%}{{var('<package_name>_schema')}}
-          {%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_<package_name>
-            {% else %}<package_name>{%- endif -%}
-      alias: <table_name>
-      tags: <package_name>
+  - name: ed_summary
     description: >
-      Add model description
+      ED Classification with total conditions, encounters, claims, patient and attributable spend.
+    config:
+      materialized: table
     columns:
-      - name: <column_name>
-        description: >
-          Add column description
+      - name: classification_order
+      - name: classification_name
+      - name: condition_row_ct
+      - name: encounter_ct
+      - name: claim_ct
+      - name: patient_ct
+      - name: claim_paid_amount_sum
+      - name: pct_claim_row_ct
+      - name: pct_claim_paid_amount_sum
