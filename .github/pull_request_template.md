@@ -1,14 +1,19 @@
 ## Describe your changes
-Please include a summary of any changes.
+_Please include a summary of any changes._
+
+
+## Issues
+_Please include any relevant issues as bullets._
 
 
 ## How has this been tested?
-Please describe the tests you ran to verify your changes.  Provide instructions or code to reproduce output.
+_Please describe the tests you ran to verify your changes.  Provide instructions or code to reproduce output._
 
 
 ## Reviewer focus
-Please summarize the specific items you’d like the reviewer(s) to look into.
+_Please summarize the specific items you’d like the reviewer(s) to look into._
 
+-
 
 ## Checklist before requesting a review
 - [ ]  (Optional) I have recorded a Loom performing a self-review of my code
@@ -20,5 +25,5 @@ Please summarize the specific items you’d like the reviewer(s) to look into.
 ## (Optional) Gif of how this PR makes you feel
 ![](url)
 
-
 ## Loom link
+[Loom Video]()
