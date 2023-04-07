@@ -9,10 +9,10 @@ models:
     columns:
       - name: classification_order
       - name: classification_name
-      - name: condition_row_ct
-      - name: encounter_ct
-      - name: claim_ct
-      - name: patient_ct
+      - name: condition_row_count
+      - name: encounter_count
+      - name: claim_count
+      - name: patient_count
       - name: claim_paid_amount_sum
-      - name: pct_claim_row_ct
-      - name: pct_claim_paid_amount_sum
+      - name: percent_claim_row_count
+      - name: percent_claim_paid_amount_sum
