@@ -1,9 +1,9 @@
 version: 2
 
 models:
-  - name: ed_summary
+  - name: by_year
     description: >
-      ED Classification as a cube that can be summarized
+      Total Claims and Claim Paid Amount Sum in each category
     config:
       materialized: table
     columns:
