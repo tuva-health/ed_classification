@@ -12,6 +12,5 @@ models:
       - name: ccs_description_with_covid
       - name: condition_date_year
       - name: condition_date_year_month
-      - name: encounter_count
       - name: claim_count
       - name: claim_paid_amount_sum
