@@ -10,7 +10,7 @@ with summary as (
       , sum(claim_paid_amount_sum) as claim_paid_amount_sum
 
    from {{ ref('ed_summary') }}
-   group by 1,2,3
+   group by 1,2,3,4
 )
 
 select
