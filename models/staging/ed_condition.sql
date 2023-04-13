@@ -11,7 +11,8 @@ with ed_claims as (
     claim_id
     , sum(paid_amount) as claim_paid_amount_sum
   from {{ var('medical_claim') }}
-  where place_of_service_code = '23' or revenue_center_code in ('0450', '0451', '0452', '0456', '0459', '0981')
+  where (place_of_service_code = '23' or revenue_center_code in ('0450', '0451', '0452', '0456', '0459', '0981'))
+  -- and encounter_type <> 'acute inpatient'
   group by 1
 )
 
