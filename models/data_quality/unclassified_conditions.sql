@@ -1,8 +1,10 @@
--- CCS Level breakdown of condition diagnoses and statistics
--- on the number of codes and condition rows that could not
--- be classified using the johnston algorithm
+/*
+CCS Level breakdown of condition diagnoses and statistics
+on the number of codes and condition rows that could not
+be classified using the johnston algorithm
+*/
 
--- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
 select
    ccs_description_with_covid

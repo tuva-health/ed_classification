@@ -1,3 +1,6 @@
+{{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
+
+
 with summary as (
   select
      classification_order

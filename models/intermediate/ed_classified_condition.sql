@@ -3,7 +3,7 @@ All condition discharge diagnosis left join with probabilistic
 indicators of ED classification terminology
 */
 
--- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
 {% set colnames = ["edcnnpa", "edcnpa", "epct", "noner", "injury", "psych", "alcohol", "drug"] %}
 

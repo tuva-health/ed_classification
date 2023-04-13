@@ -1,5 +1,4 @@
--- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
-
+{{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
 select
    classification_order

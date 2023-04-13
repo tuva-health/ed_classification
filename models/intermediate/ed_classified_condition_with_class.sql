@@ -4,7 +4,7 @@ with the greatest probability (that's the greatest logic). This logic removes
 any rows that were not classified.
 */
 
--- {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
 select
    a.encounter_id

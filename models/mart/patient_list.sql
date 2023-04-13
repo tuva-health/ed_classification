@@ -1,6 +1,5 @@
-/*
-All Conditions with all available relevant patient information
-*/
+{{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
+
 
 select
    p.*
