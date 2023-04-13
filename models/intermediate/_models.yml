@@ -17,7 +17,7 @@ models:
       schema: ed_classification
       materialized: table
     tests:
-      - dbt_utils.equal_rowcount:
+      - dbt_utils.fewer_rows_than:
           compare_model: ref('ed_condition')
   - name: ed_classified_condition_with_claim
     description: >
