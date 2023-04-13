@@ -15,9 +15,9 @@ select
    , a.description
    , a.ccs_description_with_covid
    , a.condition_date
-   , {{ dbt_date.date_part("year", "condition_date") }}::text as condition_date_year
-   , {{ dbt_date.date_part("year", "condition_date") }}::text
-     || lpad({{ dbt_date.date_part("month", "condition_date") }}::text, 2, '0')
+   , cast({{ dbt_date.date_part("year", "condition_date") }} as {{ dbt.type_string() }}) as condition_date_year
+   , cast({{ dbt_date.date_part("year", "condition_date") }} as {{ dbt.type_string() }})
+     || lpad(cast({{ dbt_date.date_part("month", "condition_date") }} as {{ dbt.type_string() }}), 2, '0')
      as condition_date_year_month
    , a.claim_paid_amount_sum
    , case greatest(edcnnpa, edcnpa, epct, noner, injury, psych, alcohol, drug)
