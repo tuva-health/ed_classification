@@ -5,6 +5,19 @@ information merged on based on the header level detail on the claim
 
 {{ config(enabled=var('ed_classification_enabled',var('tuva_packages_enabled',True))) }}
 
+with deduped_claims as (
+   select distinct
+      claim_id
+      , claim_line_end_date
+      , service_category_1
+      , service_category_2
+      , facility_npi
+      , billing_npi
+      , patient_id
+   from {{ var('medical_claim') }} mc
+   where mc.claim_line_number = 1
+)
+
 select
   c.claim_id
   , c.patient_id
@@ -33,10 +46,9 @@ select
   , p.state as patient_state
 
 from {{ ref('ed_classified_condition_with_class') }} c
-inner join {{ var('medical_claim') }} mc
+inner join deduped_claims mc
       on c.claim_id = mc.claim_id
       and c.condition_date = mc.claim_line_end_date
-      and mc.claim_line_number = 1
 left join {{ var('provider') }} fp on mc.facility_npi = fp.npi and fp.deactivation_flag = 0
 left join {{ var('provider') }} bp on mc.billing_npi = bp.npi and bp.deactivation_flag = 0
 left join {{ var('patient') }} p on mc.patient_id = p.patient_id
