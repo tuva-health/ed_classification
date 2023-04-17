@@ -13,7 +13,7 @@ with ed_claims as (
   from {{ var('medical_claim') }}
   where (place_of_service_code = '23' or revenue_center_code in ('0450', '0451', '0452', '0456', '0459', '0981'))
   and (encounter_type <> 'acute inpatient' or encounter_type is null)
-  group by 1
+  group by claim_id
 )
 
 select

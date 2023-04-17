@@ -11,5 +11,5 @@ select
    , count(*) as condition_count
 
 from {{ ref('ed_classified_condition_with_claim') }}
-group by 1, 2
+group by service_category_1, service_category_2
 order by count(*) desc
