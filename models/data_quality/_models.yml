@@ -8,7 +8,6 @@ models:
       that could not be classified using the ED Classification algorithm.
     config:
       materialized: table
-      schema: ed_data_quality
     columns:
       - name: ccs_description_with_covid
         description: >
@@ -35,12 +34,8 @@ models:
     description: >
        For all condition rows associated with ED claims, perform a crosstab against
        the service category to double check that they really are mostly outpatient ED claims.
-    config:
-      schema: ed_data_quality
   - name: unclassified_rows
     description: Overall unclassified rows stats.
-    config:
-      schema: ed_data_quality
     columns:
       - name: condition_row_unclassified_percent
         description: Percent of discharge condition rows that were not classifiable

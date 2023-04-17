@@ -5,4 +5,3 @@ models:
     description: Conditions table filtered to only those rows associated with ED claims
     config:
       materialized: table
-      schema: ed_classification

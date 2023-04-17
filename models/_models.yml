@@ -6,7 +6,6 @@ models:
       ED Classification as a cube that can be summarized
     config:
       materialized: table
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name

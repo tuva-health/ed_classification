@@ -3,8 +3,6 @@ version: 2
 models:
   - name: by_year
     description: ED_Summary aggregated by year
-    config:
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name
@@ -13,8 +11,6 @@ models:
       - name: claim_paid_amount_sum
   - name: by_year_month
     description: ED_Summary aggregated by year month
-    config:
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name
@@ -23,8 +19,6 @@ models:
       - name: claim_paid_amount_sum
   - name: by_ccs_description
     description: ED_Summary aggregated by year, and ccs_description
-    config:
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name
@@ -34,8 +28,6 @@ models:
       - name: claim_paid_amount_sum
   - name: by_patient_race
     description: ED_Summary aggregated by year, and ccs_description
-    config:
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name
@@ -45,8 +37,6 @@ models:
       - name: claim_paid_amount_sum
   - name: by_provider_parent_organization
     description: ED_Summary aggregated by year, and ccs_description
-    config:
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name
@@ -56,8 +46,6 @@ models:
       - name: claim_paid_amount_sum
   - name: by_provider_practice_state
     description: ED_Summary aggregated by year, and ccs_description
-    config:
-      schema: ed_classification
     columns:
       - name: classification_order
       - name: classification_name
@@ -70,5 +58,3 @@ models:
       ED condition rows with all available patient information joined in.
       Useful for identifying patients who have more than a certain number
       of ED visits per time period.
-    config:
-      schema: ed_classification

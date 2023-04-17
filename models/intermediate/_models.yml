@@ -3,7 +3,6 @@ version: 2
 models:
   - name: ed_classified_condition
     config:
-      schema: ed_classification
       materialized: table
     description: >
       All conditions with the classifications merged on and resolved to a single
@@ -14,7 +13,6 @@ models:
   - name: ed_classified_condition_with_class
     description: Filtered condition row table to classified ones.
     config:
-      schema: ed_classification
       materialized: table
     tests:
       - dbt_utils.fewer_rows_than:
@@ -24,7 +22,6 @@ models:
       Filtered condition row table to classified ones. Includes additional
       information from the claim header, provider and patient tables
     config:
-      schema: ed_classification
       materialized: table
     tests:
       - dbt_utils.equal_rowcount:
