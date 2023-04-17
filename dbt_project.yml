@@ -14,7 +14,7 @@ vars:
     medical_claim: medicare_lds_five_percent.core.medical_claim
     provider: medicare_lds_five_percent.core.provider
     patient: medicare_lds_five_percent.core.patient
-    "dbt_date:time_zone": "America/New_York"
+    "dbt_date:time_zone": "Etc/UTC"
     terminology_icd_10_cm_to_ccs_mapping: tuva_claims_demo_full.terminology.icd_10_cm_to_ccs
     encounter: >
         {% if var('ed_classification_encounter_override',none) is not none %}{{var('ed_classification_encounter_override')}}
