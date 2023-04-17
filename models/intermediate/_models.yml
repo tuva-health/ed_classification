@@ -25,4 +25,9 @@ models:
       materialized: table
     tests:
       - dbt_utils.equal_rowcount:
-          compare_model: ref('ed_condition')
+          compare_model: ref('ed_condition_with_class')
+    columns:
+      - name: claim_id
+        tests:
+          - unique
+          - not_null

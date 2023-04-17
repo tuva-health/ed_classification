@@ -17,6 +17,21 @@ with deduped_claims as (
    from {{ var('medical_claim') }} mc
    where mc.claim_line_number = 1
 )
+, deduped_providers as (
+   select distinct
+      npi
+      , entity_type_code
+      , entity_type_description
+      , primary_taxonomy_code
+      , primary_specialty_description
+      , provider_name
+      , parent_organization_name
+      , practice_city
+      , practice_state
+      , practice_zip_code
+   from {{ var('provider') }}
+   where deactivation_flag = 0
+)
 
 select
   c.claim_id
@@ -49,6 +64,6 @@ from {{ ref('ed_classified_condition_with_class') }} c
 inner join deduped_claims mc
       on c.claim_id = mc.claim_id
       and c.condition_date = mc.claim_line_end_date
-left join {{ var('provider') }} fp on mc.facility_npi = fp.npi and fp.deactivation_flag = 0
-left join {{ var('provider') }} bp on mc.billing_npi = bp.npi and bp.deactivation_flag = 0
+left join deduped_providers fp on mc.facility_npi = fp.npi
+left join deduped_providers bp on mc.billing_npi = bp.npi
 left join {{ var('patient') }} p on mc.patient_id = p.patient_id

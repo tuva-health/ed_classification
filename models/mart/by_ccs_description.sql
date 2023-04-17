@@ -6,7 +6,7 @@ with summary as (
       , classification_name
       , condition_date_year
       , ccs_description_with_covid
-      , sum(claim_count) as claim_count
+      , count(distinct(claim_id)) as claim_count
       , sum(claim_paid_amount_sum) as claim_paid_amount_sum
 
    from {{ ref('ed_summary') }}
