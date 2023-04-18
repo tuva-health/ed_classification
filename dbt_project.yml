@@ -11,7 +11,10 @@ profile: 'default'
 vars:
     ed_classification_encounter_override: medicare_lds_five_percent.core.encounter
     ed_classification_condition_override: medicare_lds_five_percent.core.condition
-    medical_claim: medicare_lds_five_percent.claims_data_model.medical_claim
+    medical_claim: medicare_lds_five_percent.core.medical_claim
+    provider: medicare_lds_five_percent.core.provider
+    patient: medicare_lds_five_percent.core.patient
+    "dbt_date:time_zone": "Etc/UTC"
     terminology_icd_10_cm_to_ccs_mapping: tuva_claims_demo_full.terminology.icd_10_cm_to_ccs
     encounter: >
         {% if var('ed_classification_encounter_override',none) is not none %}{{var('ed_classification_encounter_override')}}
@@ -33,6 +36,14 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+
+models:
+  ed_classification:
+    +schema: ed_classification
+
+seeds:
+  ed_classification:
+    schema: ed_classification
 
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`

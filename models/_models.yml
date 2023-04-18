@@ -3,16 +3,14 @@ version: 2
 models:
   - name: ed_summary
     description: >
-      ED Classification with total conditions, encounters, claims, patient and attributable spend.
+      ED Classification as a cube that can be summarized
     config:
       materialized: table
     columns:
       - name: classification_order
       - name: classification_name
-      - name: condition_row_count
-      - name: encounter_count
+      - name: ccs_description_with_covid
+      - name: condition_date_year
+      - name: condition_date_year_month
       - name: claim_count
-      - name: patient_count
       - name: claim_paid_amount_sum
-      - name: percent_claim_row_count
-      - name: percent_claim_paid_amount_sum
